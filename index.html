@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariel Gianan - IT Operations & Support Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0052CC;
+            --secondary-color: #003D99;
+            --accent-color: #00D9FF;
+            --dark-bg: #0A0E27;
+            --card-bg: #1A1F3A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8C1D8;
+            --border-color: #2D3748;
+            --success-color: #10B981;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0A0E27 0%, #1a1f3a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 82, 204, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--text-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--accent-color);
+            margin-left: 1rem;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(0, 82, 204, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.8) 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-color);
+            background: rgba(0, 217, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(180deg, rgba(10, 14, 39, 0.8) 0%, rgba(26, 31, 58, 0.5) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Technologies Section */
+        .technologies {
+            background: linear-gradient(180deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.8) 100%);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            border-color: var(--accent-color);
+            background: rgba(0, 217, 255, 0.05);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .tech-item-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tech-item-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Proof Section */
+        .proof {
+            background: linear-gradient(180deg, rgba(10, 14, 39, 0.8) 0%, rgba(26, 31, 58, 0.5) 100%);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .result-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            border-color: var(--success-color);
+            transform: translateY(-5px);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .result-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .result-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .result-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .result-metric {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, rgba(0, 52, 153, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
+            text-align: center;
+        }
+
+        .contact .section-title {
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-method-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .contact-method p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .contact-method a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .cta-block {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cta-block p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-button.secondary {
+                display: block;
+                margin: 1rem auto 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .hero {
+                min-height: 70vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tech">Technologies</a></li>
+            <li><a href="#proof">Proof</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Tier 2-3 IT Operations<br>Built for Remote Scale</h1>
+            <p class="subtitle">5+ years preventing infrastructure breakdowns. Active Directory, FortiGate, network security, and healthcare systems. I fix problems before they cost you time.</p>
+            <div>
+                <a href="#contact" class="cta-button">Let's Work Together</a>
+                <a href="#about" class="cta-button secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Proactive IT Operations Specialist</h3>
+                    <p>I'm not the person who waits for tickets. I'm the person who <span class="highlight">builds systems that prevent tickets from happening</span>. With 5+ years in IT operations, I've moved beyond reactive support to strategic infrastructure planning.</p>
+                    <p>My background spans <span class="highlight">healthcare IT</span> (HIPAA-compliant systems), <span class="highlight">enterprise network security</span> (FortiGate firewalls, VPN architecture), and <span class="highlight">Active Directory management</span> at scale. I work directly with leadership to identify risks, automate repetitive tasks, and keep systems running 24/7.</p>
+                    <p>I'm built for remote work. I own my time, communicate clearly, and deliver without needing to be managed.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years in IT Operations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">99.8%</div>
+                        <div class="stat-label">System Uptime (Avg)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Remote Clients Supported</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">On-Call Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">What I Do</h2>
+            <p class="section-subtitle">End-to-end IT infrastructure support designed for remote-first businesses</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔐</div>
+                    <h3>Active Directory & Identity</h3>
+                    <p>User provisioning, group policy, security groups, and access control for 100+ users. I build systems that scale as you grow.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Network Security & Firewalls</h3>
+                    <p>FortiGate configuration, VPN setup, network segmentation, and security policy enforcement. Proactive threat management.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Network Infrastructure</h3>
+                    <p>LAN/WAN optimization, VPN troubleshooting, DNS, DHCP, and connectivity for remote teams. No more network headaches.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Remote Support & Troubleshooting</h3>
+                    <p>RDP, TeamViewer, AnyDesk expertise. Fast diagnosis and resolution. I get people back to work immediately.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Healthcare IT & EMR Systems</h3>
+                    <p>HIPAA compliance, EMR system support, and healthcare-specific infrastructure. I understand the stakes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Automation & Scripting</h3>
+                    <p>Google Apps Script, Python automation, and custom solutions. Eliminate manual work and reduce human error.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="tech" class="technologies">
+        <div class="container">
+            <h2 class="section-title">Technologies & Tools</h2>
+            <p class="section-subtitle">The infrastructure stack I work with daily</p>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔑</div>
+                    <div class="tech-item-name">Active Directory</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🛡️</div>
+                    <div class="tech-item-name">FortiGate Firewall</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔒</div>
+                    <div class="tech-item-name">VPN Architecture</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">💬</div>
+                    <div class="tech-item-name">RDP / Remote Tools</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🐍</div>
+                    <div class="tech-item-name">Python Automation</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">📊</div>
+                    <div class="tech-item-name">Google Apps Script</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🌐</div>
+                    <div class="tech-item-name">DNS / DHCP</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🏥</div>
+                    <div class="tech-item-name">HIPAA Compliance</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">📡</div>
+                    <div class="tech-item-name">Network Monitoring</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔄</div>
+                    <div class="tech-item-name">Azure / O365</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🖥️</div>
+                    <div class="tech-item-name">Windows Server</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">📞</div>
+                    <div class="tech-item-name">Vendor Coordination</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof Section -->
+    <section id="proof" class="proof">
+        <div class="container">
+            <h2 class="section-title">Proof & Results</h2>
+            <p class="section-subtitle">What happens when you hire someone who prevents problems</p>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-badge">Network Security</div>
+                    <h3>Eliminated 40+ Security Vulnerabilities</h3>
+                    <p>Audited 200+ user permissions, enforced group policy standards, and migrated to modern authentication. <span class="result-metric">Zero breaches post-implementation.</span></p>
+                </div>
+                <div class="result-card">
+                    <div class="result-badge">Infrastructure</div>
+                    <h3>Built VPN System for 150+ Remote Users</h3>
+                    <p>Designed and deployed FortiGate VPN architecture supporting 24/7 operations across 6 countries. <span class="result-metric">99.8% uptime, <5ms latency.</span></p>
+                </div>
+                <div class="result-card">
+                    <div class="result-badge">Automation</div>
+                    <h3>Saved 20 Hours/Week with Automation</h3>
+                    <p>Built Python scripts and Google Apps integrations for user provisioning, reporting, and compliance. <span class="result-metric">98% reduction in manual tasks.</span></p>
+                </div>
+                <div class="result-card">
+                    <div class="result-badge">Support</div>
+                    <h3>Reduced Avg. Ticket Resolution by 60%</h3>
+                    <p>Implemented proactive monitoring, knowledge base, and clear escalation procedures. <span class="result-metric">Users back to work in 8 minutes average.</span></p>
+                </div>
+                <div class="result-card">
+                    <div class="result-badge">Healthcare</div>
+                    <h3>Managed HIPAA-Compliant Infrastructure</h3>
+                    <p>5+ years supporting healthcare organizations with EMR system management, encryption, audit trails, and regulatory compliance. <span class="result-metric">100% audit pass rate.</span></p>
+                </div>
+                <div class="result-card">
+                    <div class="result-badge">Leadership</div>
+                    <h3>Direct Partnership with C-Level</h3>
+                    <p>Regular strategy meetings with CIOs and CTOs. I identify risks before they become problems and present solutions, not problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Ready to Solve Your IT Challenges?</h2>
+            <p class="section-subtitle">Let's talk about how I can keep your infrastructure running while you focus on growth.</p>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-method-icon">✉️</div>
+                    <p>Email</p>
+                    <a href="mailto:mariel.gianan@example.com">mariel.gianan@example.com</a>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-method-icon">💼</div>
+                    <p>LinkedIn</p>
+                    <a href="https://linkedin.com/in/mariel-gianan" target="_blank">linkedin.com/in/mariel-gianan</a>
+                </div>
+                <div class="contact-method">
+                    <div class="contact-method-icon">🌍</div>
+                    <p>Upwork</p>
+                    <a href="https://upwork.com/freelancers/marielgianan" target="_blank">Available for contract work</a>
+                </div>
+            </div>
+            <div class="cta-block">
+                <p>I typically respond within 2 hours. Let's discuss your infrastructure needs, timeline, and goals.</p>
+                <a href="mailto:mariel.gianan@example.com" class="cta-button">Send Me a Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mariel Gianan. All rights reserved. | IT Operations Specialist | Remote-First Infrastructure Support</p>
+    </footer>
+</body>
+</html>
